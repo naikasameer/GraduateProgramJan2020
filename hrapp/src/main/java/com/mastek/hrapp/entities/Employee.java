@@ -1,6 +1,8 @@
 package com.mastek.hrapp.entities;
 
 import java.util.HashSet;
+
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,22 +18,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+import org.springframework.data.annotation.Transient;
+
+
+@XmlRootElement // declares the entity to be transformed to XML/JSON
 @Entity // declares the class as Entity , to be managed by JPA
 @Table(name="JPA_Employees") // declare the table name associated with this class
 @EntityListeners({EmployeeListener.class}) // call the appropriate listener event method on lifecyle event
+@NamedQueries({
+	@NamedQuery(name="Employee.findBySalary", // declare the query name as the method in DAO
+			query="select e from Employee e where e.salary between :minSalary and :maxSalary")
+			// identify the query to fetch Employee objects with properties and parameters
+			// all the params are to be declared using @Param("<name>") in the DAO interface
+	,
+	@NamedQuery(name="Employee.findByDesignation",
+			query="select e from Employee e where e.designation=:designation")
+			// identify the the method in DAO and pass necessary params
+	
+})
 public class Employee {
 
 	int empno;
+	
+	@FormParam("name")
 	String name;
+	
+	@FormParam("salary")
 	double salary;
+	
+	@FormParam("designation")
 	Designation designation;
 	
 	Department currentDepartment;
 	
 	@ManyToOne // One Employee is associated with one of the many Departments 
 	@JoinColumn(name="fk_department_number") // the foreign key column to store the associate deptno
+	@Transient // ignore this property when storing employee data in MongoDB
+	@XmlTransient // ignore the association property when shared via Service
 	public Department getCurrentDepartment() {
 		return currentDepartment;
 	}
@@ -47,6 +77,8 @@ public class Employee {
 			joinColumns= {@JoinColumn(name="fk_empno")}, // foreign key column for current class
 			inverseJoinColumns = {@JoinColumn(name="fk_projectId")} // foreign key column for collection type
 			)
+	@Transient // ignore this property when storing employee data in MongoDB
+	@XmlTransient // ignore the association property when shared via Service
 	public Set<Project> getProjectsAssigned() {
 		return projectsAssigned;
 	}
