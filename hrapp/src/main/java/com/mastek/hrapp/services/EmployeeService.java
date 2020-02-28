@@ -1,5 +1,8 @@
 package com.mastek.hrapp.services;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 
 import javax.annotation.PreDestroy;
@@ -9,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mastek.hrapp.apis.EmployeeAPI;
 import com.mastek.hrapp.dao.DepartmentJPADAO;
@@ -123,6 +128,28 @@ public class EmployeeService implements EmployeeAPI{
 	public Employee registerNewEmployee(Employee newEmployee) {
 		newEmployee = empDAO.save(newEmployee);
 		return newEmployee;
+	}
+
+	@Override
+	@Transactional
+	public Set<Project> getEmployeeProjects(int empno) {
+		Employee currentEmp = empDAO.findById(empno).get();
+
+		// get the dependencies populated within the method transaction
+		int count = currentEmp.getProjectsAssigned().size();
+		System.out.println(count +" Projects found");
+		
+		Set<Project> projects = currentEmp.getProjectsAssigned();
+		
+		return projects;
+	}
+
+	@Override
+	@Transactional
+	public Project registerProjectForEmployee(int empno, Project newProject) {
+		newProject=  projectDAO.save(newProject);
+		assignEmployeeToProject(empno, newProject.getProjectId());
+		return newProject;
 	}
 }
 

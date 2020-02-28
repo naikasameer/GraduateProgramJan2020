@@ -11,6 +11,9 @@ public class APIConfig
 	// configure the Service classes using ResourceConfig 
 	
 	public APIConfig() {
+		// enable the CORS filter for UI applications to access the service
+		register(CORSFilter.class);
+		
 		// register each Service class to enable services as API
 		register(EmployeeService.class);
 	}
