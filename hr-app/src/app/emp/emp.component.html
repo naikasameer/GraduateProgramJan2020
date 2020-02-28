@@ -1,0 +1,86 @@
+<h2>Employee Information</h2>
+<table>
+    <tr>
+        <td>
+            Number:
+        </td>
+        <td *ngIf="!isEmpEditing">
+            {{currentEmployee.empno}}
+        </td>
+        <td *ngIf="isEmpEditing">
+            <input name="empno" [(ngModel)]="currentEmployee.empno">
+        </td>
+        <td>
+            <button (click)="toggleEmpEditForm()">
+                    {{((isEmpEditing)?"Save":"Edit")}}
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Name:
+        </td>
+        <td *ngIf="!isEmpEditing">
+            {{currentEmployee.name}}
+        </td>
+        <td *ngIf="isEmpEditing">
+            <input name="name" [(ngModel)]="currentEmployee.name">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Salary:
+        </td>
+        <td *ngIf="!isEmpEditing">
+            {{currentEmployee.salary}}
+        </td>
+        <td *ngIf="isEmpEditing">
+            <input name="salary" [(ngModel)]="currentEmployee.salary">
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            Desgination:
+        </td>
+        <td *ngIf="!isEmpEditing">
+            {{currentEmployee.designation}}
+        </td>
+        <td *ngIf="isEmpEditing">
+            <input name="designation" [(ngModel)]="currentEmployee.designation">
+        </td>
+    </tr>
+</table>
+<hr>
+<h2> Project Details</h2>
+<form  *ngIf="isProjectFormVisible" 
+        (submit)="addNewProject(
+            {projectId:0,name:pname.value,location:ploc.value})">
+    <table>
+    <tr>
+            <td>
+                <input placeholder="Name" name="name" #pname>
+            </td>
+            <td>
+                <input placeholder="Location" name="location" #ploc>
+            </td>
+            <td>
+                <input type="submit" value="Add Project">
+            </td>
+    </tr>
+    </table>
+</form>
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th><button (click)="showProjectForm()">+</button></th>
+    </tr>
+    <tr *ngFor="let p of employeeProjects">
+        <td>{{p.projectId}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.location}}</td>
+    </tr>
+</table>
+

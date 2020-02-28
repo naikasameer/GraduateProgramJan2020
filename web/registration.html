@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/index.css" type="text/css"></link>
+    </head>
+    <body class="font-normal">
+        <h2 class="font-heading primary-color-one">Registration Form</h2>
+
+        <form>
+            <table class="primary-color-one">
+               <tr>
+                    <td>Name:</td>
+                </tr>
+                <tr>
+                    <td>
+                            <input  name="name" 
+                                    placeholder="Enter Name"
+                                    maxlength="6">
+                    </td> 
+                </tr>
+                <tr>
+                    <td>Enter the OTP code to register</td>
+                </tr>
+                <tr>
+                    <td>
+                            <input  name="OTP"
+                                    type="password"
+                            >
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input  name="Gender"
+                                type="radio"
+                                value="M"
+                                checked
+                        > Male
+                        <input  name="Gender"
+                                type="radio"
+                                value="F"
+                        > Female
+                    </td>
+                </tr>
+                <tr>
+                    <td> 
+                        Interest Areas:      
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input  name="interests"
+                                value="UI"
+                                type="checkbox"   
+                        > User Interfaces <br/>
+                        <input  name="interests"
+                                value="BI"
+                                type="checkbox"   
+                        > Business Intelligence <br/>
+                        <input  name="interests"
+                                value="AI"
+                                type="checkbox"   
+                        > Artificial Intelligence <br/>
+                        <input  name="interests"
+                                value="API"
+                                type="checkbox"   
+                        > Spring Boot Rest API <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select your current location</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="location">
+                            <option value="LS">Leeds</option>
+                            <option value="YK">York</option>
+                            <option value="SD">Sheffield</option>
+                            <option value="BM">Birmingham</option>
+                            <option value="MR">Manchester</option>
+                            <option value="LN">London</option>
+                            <option value="GW">Glasgow</option>
+                            <option value="EH">Edingburgh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select your Preferred Venue</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="preferredLocation" size="4" multiple="yes">
+                            <option value="LS">Leeds</option>
+                            <option value="LN">London</option>
+                            <option value="EH">Edingburgh</option>
+                            <option value="GW">Glasgow</option>
+                            <option value="MR">Manchester</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select Experience in Years (1-10)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="range" 
+                                min="1" 
+                                max="10" 
+                                name="experience" 
+                                value="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select the Date of Joining</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="date"
+                                name="joinDate"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td>Appointment time</td>
+                </tr>                
+                <tr>
+                    <td>
+                        <input  type="time"
+                                name="appointmentTime"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Register">
+                        <input type="reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
+
+
