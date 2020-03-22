@@ -158,6 +158,7 @@ class HrappApplicationTests {
 		}
 	}
 	
+	/*
 	@Test
 	void testUpdateEmployees() {
 		Employee emp = empDAO.findById(1).get();
@@ -229,7 +230,7 @@ class HrappApplicationTests {
 			System.out.println(applicant);
 		}
 	}	
-	
+	*/
 }
 
 
